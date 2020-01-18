@@ -8,7 +8,7 @@ pdb.Pdb.complete = rlcompleter.Completer(locals()).complete
 # save indent! respect youself
 import bdb
 import linecache
-if (not getattr(bdb.Bdb , "_format_stack_entry_bak", None)) {
+if (not hasattr(bdb.Bdb , "_format_stack_entry_bak")):
     setattr(bdb.Bdb, "_format_stack_entry_bak", bdb.Bdb.format_stack_entry)
     def ___new_format_stack_entry(self, frame_lineno, lprefix=': '):
         import linecache
@@ -22,8 +22,7 @@ if (not getattr(bdb.Bdb , "_format_stack_entry_bak", None)) {
             # bold print \033[1m .. \033[0m
             ret = ret.replace(line.strip(), "\033[1m"+line.rstrip()+"\033[0m")
             return ret
-            setattr(bdb.Bdb, "format_stack_entry", ___new_format_stack_entry)
-}
+    setattr(bdb.Bdb, "format_stack_entry", ___new_format_stack_entry)
 
 # I awaited this too long. A simple thing but so useful
 def ___exec_whithout_success_code(some):
