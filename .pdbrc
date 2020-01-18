@@ -1,3 +1,6 @@
+# After Perl debugger, pdb looks not mature enough
+# Otherwise how you could explain so many version of debuggers for Python
+
 # Yep, I don't care about Python2.X cause I don't have it
 # THIS FILE contains SINGLE-LINES expressions, multiline code placed to ~/.pdbrc.py file
 
@@ -8,13 +11,13 @@
 # ACHTUN'Ge! be careful with variables and function names
 # cause they all would be accessible in REPL or del it at the end of usage
 
-import os
-
+!import os
 # this rc file takes single lines, so define our complete function here
 # PYFILE = os.path.expanduser("~/.pdbrc.py")
 PYFILE = os.path.expanduser(".pdbrc.py") # TODO: fake path to dev purposes
 if os.path.isfile(PYFILE): eval("exec(open(PYFILE).read())")
 del PYFILE
+
 
 ###
 # "!!" is access to shell over os.system
@@ -23,3 +26,25 @@ del PYFILE
 # (Pdb) !! cat file.txt
 ###
 alias !! !___exec_whithout_success_code('''%*''')
+
+
+###
+# use "." to show the current cursor position
+# very useful after usage "l" when you need to remember where are you exactly at this moment
+###
+alias . l .
+
+
+###
+# For Perl old geezers who prefer "v" instead of "l"
+###
+alias v l
+
+
+###
+# use "show" to show source code
+# (Pdb) show ClassName
+# (Pdb) show ClassName.some_func
+###
+!import inspect
+alias show print(inspect.getsource(%1))

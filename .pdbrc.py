@@ -16,6 +16,7 @@ def ___new_format_stack_entry(self, frame_lineno, lprefix=': '):
     line = linecache.getline(filename, lineno, frame.f_globals)
     if line:
         # hope that naked "strip" was used unintentionally
+        # bold print \033[1m .. \033[0m
         ret = ret.replace(line.strip(), "\033[1m"+line.rstrip()+"\033[0m")
     return ret
 setattr(bdb.Bdb, "format_stack_entry", ___new_format_stack_entry)
