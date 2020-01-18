@@ -1,0 +1,25 @@
+# Yep, I don't care about Python2.X cause I don't have it
+# THIS FILE contains SINGLE-LINES expressions, multiline code placed to ~/.pdbrc.py file
+
+# snatched (=inspired, reworked) from:
+#   * https://github.com/bossjones/debug-configs-python/blob/master/python/.pdbrc
+#   * http://code.activestate.com/recipes/498182-sane-tab-completion-in-pdb/
+
+# ACHTUN'Ge! be careful with variables and function names
+# cause they all would be accessible in REPL or del it at the end of usage
+
+import os
+
+# this rc file takes single lines, so define our complete function here
+# PYFILE = os.path.expanduser("~/.pdbrc.py")
+PYFILE = os.path.expanduser(".pdbrc.py") # TODO: fake path to dev purposes
+if os.path.isfile(PYFILE): eval("exec(open(PYFILE).read())")
+del PYFILE
+
+###
+# "!!" is access to shell over os.system
+# (Pdb) !! ls -l
+# (Pdb) !! vim file.txt
+# (Pdb) !! cat file.txt
+###
+alias !! !___exec_whithout_success_code('''%*''')
