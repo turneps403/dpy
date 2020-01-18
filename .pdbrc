@@ -15,7 +15,9 @@
 # this rc file takes single lines, so define our complete function here
 # PYFILE = os.path.expanduser("~/.pdbrc.py")
 PYFILE = os.path.expanduser(".pdbrc.py") # TODO: fake path to dev purposes
-if os.path.isfile(PYFILE): eval("exec(open(PYFILE).read())")
+# if we added this to end of already existed .pdbc file and we loaded .pdbc.py somewhere above,
+# then 'super unique variable' help us to check that
+if ('_this_pdbrc_unic_459f279ea52642e4bd9f38b32ad284e9' not in locals() and os.path.isfile(PYFILE)): eval("exec(open(PYFILE).read())")
 del PYFILE
 
 
@@ -36,7 +38,7 @@ alias . l .
 
 
 ###
-# For Perl old geezers who prefer "v" instead of "l"
+# For old Perl geezers who prefer "v" instead of "l"
 ###
 alias v l
 
@@ -48,3 +50,8 @@ alias v l
 ###
 !import inspect
 alias show print(inspect.getsource(%1))
+
+alias p_ for k in sorted(%1.keys()): print("%s%-15s= %-80.80s" % ("%2",k,repr(%1[k])))
+
+# Print the instance variables of a thing.
+alias pi p_ dir(%1) %1.
