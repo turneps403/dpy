@@ -13,8 +13,8 @@
 
 !import os
 # this rc file takes single lines, so define our complete function here
-# PYFILE = os.path.expanduser("~/.pdbrc.py")
-PYFILE = os.path.expanduser(".pdbrc.py") # TODO: fake path to dev purposes
+PYFILE = os.path.expanduser("~/.pdbrc.py")
+# PYFILE = os.path.expanduser(".pdbrc.py") # TODO: fake path to dev purposes
 # if we added this to end of already existed .pdbc file and we loaded .pdbc.py somewhere above,
 # then 'super unique variable' help us to check that
 if ('_this_pdbrc_unic_459f279ea52642e4bd9f38b32ad284e9' not in locals() and os.path.isfile(PYFILE)): eval("exec(open(PYFILE).read())")
